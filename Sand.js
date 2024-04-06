@@ -56,12 +56,23 @@ function draw() {
         for (let j = 0; j < rows; j++) {
             let state = grid[i][j];
             if (state === 1) {
-                let bellow = grid[i][j + 1];
+                let below = grid[i][j + 1];
               
-                if (bellow === 0 && j < rows - 1) {
-                    nextGrid[i][j] = 0;
+                let dir = 1;
+                if (random(1) < 0.5) {
+                    dir *= -1;
+                }
+                let belowA = grid[i + dir][j + 1];
+                let belowB = grid[i - dir][j + 1
+                                          ];
+                if (below === 0) {
                     nextGrid[i][j + 1] = 1;
-                } else {
+                } else if (belowA === 0) {
+                    nextGrid[i + dir][j] = 1;
+                } else if (belowB === 0) {
+                    nextGrid[i - dir][j] = 1;
+                }
+                else {
                     nextGrid[i][j] = 1;
                 }
             }
