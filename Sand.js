@@ -2,6 +2,9 @@ function make2DArray(cols, rows) {
     let arr = new Array(cols);
     for (let i = 0; i < arr.length; i++) {
         arr[i] = new Array(rows);
+      for (let j = 0; j < arr[i].length; j++){
+        arr[i][j] = 0;
+      }
     }
     return arr;
 }
@@ -38,4 +41,19 @@ function draw() {
             square(x, y, w);
         }
     }
+  
+    let nextGrid = make2DArray(cols, rows);
+    for (let i = 0; i < cols; i++) {
+        for (let j = 0; j < rows; j++) {
+            let state = grid[i][j];
+            if (state === 1) {
+                let bellow = grid[i][j + 1];
+                if (bellow === 0) {
+                    nextGrid[i][j] = 0;
+                    nextGrid[i][j + 1] = 1;
+                }
+            }
+        }
+    }
+    grid = nextGrid; 
 }
