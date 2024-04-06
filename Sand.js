@@ -20,7 +20,10 @@ function setup() {
         for (let j = 0; j < rows; j++) {
             grid[i][j] = 0;
         }
-    }  
+    }
+  
+    grid[20][10] = 1;
+  
 }
 
 function draw() {
