@@ -24,9 +24,18 @@ function setup() {
             grid[i][j] = 0;
         }
     }
-  
-    grid[20][10] = 1;
-  
+}
+
+function mousePressed(){
+    let col = floor(mouseX / w);
+    let row = floor(mouseY / w);
+    grid[col][row] = 1;
+}
+
+function mouseDragged(){
+    let col = floor(mouseX / w);
+    let row = floor(mouseY / w);
+    grid[col][row] = 1;
 }
 
 function draw() {
@@ -48,6 +57,7 @@ function draw() {
             let state = grid[i][j];
             if (state === 1) {
                 let bellow = grid[i][j + 1];
+              
                 if (bellow === 0 && j < rows - 1) {
                     nextGrid[i][j] = 0;
                     nextGrid[i][j + 1] = 1;
